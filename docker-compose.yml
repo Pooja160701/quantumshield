@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      QUANTUMSHIELD_ENV: development
+      QUANTUMSHIELD_DATA_DIR: /app/data
+      QUANTUMSHIELD_MASTER_KEY: ${QUANTUMSHIELD_MASTER_KEY:-}
+      QUANTUMSHIELD_MAX_UPLOAD_BYTES: 10485760
+    volumes:
+      - quantumshield-data:/app/data
+    restart: unless-stopped
+volumes:
+  quantumshield-data:
